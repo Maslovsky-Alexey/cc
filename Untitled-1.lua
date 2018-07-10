@@ -1,13 +1,15 @@
 trigers = { left = 14, right = 15, finish = 16 }
 
 function getSlotIndexWithFood()
+    indexes = {}
+
     for i=1,16 do
         if ((i ~= trigers.left and i ~= trigers.right and i ~= trigers.finish) and turtle.getItemCount(i) > 0) then 
-            return i;
+            table.insert(indexes, i)
         end
     end
 
-    return 1;
+    return indexes[math.random(#indexes)]
 end
 
 function rotate90right()
@@ -86,7 +88,7 @@ end
 function finish()
     turtle.select(trigers.finish)
 
-    result = turtle.compare()
+    result = turtle.compareDown()
 
     if (result) then 
         rotate90left()
