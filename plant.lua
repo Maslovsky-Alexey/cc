@@ -60,8 +60,8 @@ end
 move()
 
 while true do
-    turn(triggers.right, turtle.turnLeft, turtle.turnRight)
-    turn(triggers.left, turtle.turnRight, turtle.turnLeft)
+    turn(triggers.right, turtle.turnRight, turtle.turnLeft)
+    turn(triggers.left, turtle.turnLeft, turtle.turnRight)
 
     step()
 
