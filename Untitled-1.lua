@@ -27,19 +27,19 @@ function oneStep()
     turtle.dig()
     turtle.select(getSlotIndexWithFood())
     turtle.place()
-    
+
     rotate90right()
 end
 
 function canMove()
     turtle.select(triggerBlockIndex)
-    return turtle.compare()
+    return not turtle.compare()
 end
 
 move()
 
 while true do
-    if (~canMove()) then
+    if (not canMove()) then
         return
     end
 
