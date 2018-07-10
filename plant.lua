@@ -65,7 +65,7 @@ while true do
 
     step()
 
-    if (movement.finish()) then
+    if (movement.finish(triggers.finish)) then
         return
     end
 end

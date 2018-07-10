@@ -37,22 +37,13 @@ function turn(slotIndex, turn)
     turn()
 end
 
-function finish()
-    if (movement.isFinish(triggers.finish)) then
-        movement.rotate90left()
-        return true
-    end
-
-    return false
-end
-
 while true do
     turn(triggers.right, turtle.turnRight)
     turn(triggers.left, turtle.turnLeft)
 
     step()
 
-    if (movement.finish()) then
+    if (movement.finish(triggers.finish)) then
         return
     end
 end
