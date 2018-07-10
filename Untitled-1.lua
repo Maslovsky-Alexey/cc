@@ -20,12 +20,15 @@ function move()
 end
 
 function oneStep()
+    move()
+
     rotate90right()
+
     turtle.dig()
     turtle.select(getSlotIndexWithFood())
     turtle.place()
+    
     rotate90right()
-    move()
 end
 
 function canMove()
@@ -34,10 +37,9 @@ function canMove()
 end
 
 move()
-move()
 
 while true do
-    if (canMove()) then
+    if (~canMove()) then
         return
     end
 
