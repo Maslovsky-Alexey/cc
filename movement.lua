@@ -54,9 +54,7 @@ function finish(finishSlotIndex)
     return result
 end
 
-local movement = {}
-
-function movement.do(action, trigers)
+function start(action, trigers)
     trigers = trigers
     
     move()
@@ -72,5 +70,9 @@ function movement.do(action, trigers)
         end
     end
 end
+
+local movement = {}
+
+movement.start = start;
 
 return movement

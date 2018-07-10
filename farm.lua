@@ -1,4 +1,4 @@
-local movement = os.loadAPI('movement')
+os.loadAPI('movement')
 
 trigers = { left = 14, right = 15, finish = 16 }
 
@@ -20,4 +20,4 @@ function farm()
     turtle.place()
 end
 
-movement.do(farm, trigers)
+movement.start(farm, trigers)
