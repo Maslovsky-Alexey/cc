@@ -1,3 +1,6 @@
+function toNumber(str)
+    return str + 0
+end
 
 function readTriggers(args)
     if (#args < 3) then
@@ -5,7 +8,7 @@ function readTriggers(args)
         return false, nil
     end
 
-    return true, { left = args[1], right = args[2], finish = args[3] }
+    return true, { left = toNumber(args[1]), right = toNumber(args[2]), finish = toNumber(args[3]) }
 end
 
 return {

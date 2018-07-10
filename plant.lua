@@ -3,7 +3,7 @@ os.loadAPI('args_reader')
 
 local args = { ... }
 
-result, trigers = args_reader.readTriggers(args)
+result, triggers = args_reader.readTriggers(args)
 
 if (not result) then
     return
@@ -17,7 +17,7 @@ function getSlotIndexWithFood()
     indexes = {}
 
     for i=1,16 do
-        if ((i ~= trigers.left and i ~= trigers.right and i ~= trigers.finish) and turtle.getItemCount(i) > 0) then 
+        if ((i ~= triggers.left and i ~= triggers.right and i ~= triggers.finish) and turtle.getItemCount(i) > 0) then 
             table.insert(indexes, i)
         end
     end
@@ -60,8 +60,8 @@ end
 move()
 
 while true do
-    turn(trigers.right, turtle.turnLeft, turtle.turnRight)
-    turn(trigers.left, turtle.turnRight, turtle.turnLeft)
+    turn(triggers.right, turtle.turnLeft, turtle.turnRight)
+    turn(triggers.left, turtle.turnRight, turtle.turnLeft)
 
     step()
 

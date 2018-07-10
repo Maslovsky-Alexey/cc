@@ -3,7 +3,7 @@ os.loadAPI('args_reader')
 
 local args = { ... }
 
-result, trigers = args_reader.readTriggers(args)
+result, triggers = args_reader.readTriggers(args)
 
 if (not result) then
     return
@@ -38,7 +38,7 @@ function turn(slotIndex, turn)
 end
 
 function finish()
-    if (movement.isFinish(trigers.finish)) then
+    if (movement.isFinish(triggers.finish)) then
         movement.rotate90left()
         return true
     end
@@ -47,8 +47,8 @@ function finish()
 end
 
 while true do
-    turn(trigers.right, turtle.turnRight)
-    turn(trigers.left, turtle.turnLeft)
+    turn(triggers.right, turtle.turnRight)
+    turn(triggers.left, turtle.turnLeft)
 
     step()
 
