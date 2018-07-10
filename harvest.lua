@@ -16,7 +16,7 @@ end
 function addBoneIfNeed()
     turtle.select(triggers.bone)
 
-    if (turtle.getItemCount() = 0) then
+    if (turtle.getItemCount() == 0) then
         return
     end
 

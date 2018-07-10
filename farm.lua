@@ -1,15 +1,21 @@
 local args = { ... }
 
-tasks = { 'plant', 'harvest' } 
+function plant()
+  shell.run(tasks[1], '14', '15', '16', '13')
+end
+
+function harvest()
+  shell.run(tasks[2], '14', '15', '16', '13')
+end
 
 if (#args > 0 and args[1] == '-r') then 
-  tasks = { 'harvest', 'plant' }
+  harvest()
 end
 
 while true do
-  shell.run(tasks[1], '14', '15', '16', '13')
+  plant()
 
   sleep(60 * 10)
 
-  shell.run(tasks[2], '14', '15', '16', '13')
+  harvest()
 end
