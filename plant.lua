@@ -16,8 +16,8 @@ end
 function getSlotIndexWithFood()
     indexes = {}
 
-    for i=1,16 do
-        if ((i ~= triggers.left and i ~= triggers.right and i ~= triggers.finish) and turtle.getItemCount(i) > 0) then 
+    for i=1,4 do
+        if (turtle.getItemCount(i) > 0) then 
             table.insert(indexes, i)
         end
     end
