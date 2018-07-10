@@ -8,7 +8,7 @@ function readTriggers(args)
         return false, nil
     end
 
-    return true, { left = toNumber(args[1]), right = toNumber(args[2]), finish = toNumber(args[3]), bone = args[4] }
+    return true, { left = toNumber(args[1]), right = toNumber(args[2]), finish = toNumber(args[3]), bone = toNumber(args[4]) }
 end
 
 return {
