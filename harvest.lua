@@ -13,7 +13,14 @@ function move()
     turtle.forward()
 end
 
+function addBoneIfNeed()
+    turtle.select(triggers.bone)
+
+    while (turtle.place()) do end
+end
+
 function harvest()
+    addBoneIfNeed()
     turtle.dig() 
     turtle.suck()
 end

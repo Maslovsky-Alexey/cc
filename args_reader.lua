@@ -3,12 +3,12 @@ function toNumber(str)
 end
 
 function readTriggers(args)
-    if (#args < 3) then
-        print("some args missed. please set 3 args 'left trigger index', 'right trigger index', 'finish trigger index'.")
+    if (#args < 4) then
+        print("some args missed. please set 3 args 'bone trigger index', 'left trigger index', 'right trigger index', 'finish trigger index'.")
         return false, nil
     end
 
-    return true, { left = toNumber(args[1]), right = toNumber(args[2]), finish = toNumber(args[3]) }
+    return true, { left = toNumber(args[1]), right = toNumber(args[2]), finish = toNumber(args[3]), bone = args[4] }
 end
 
 return {
