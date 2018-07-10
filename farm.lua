@@ -1,6 +1,10 @@
 local args = { ... }
 
-tasks = (#args > 0 and args[1] == '-r') ? { 'harvest', 'plant' } : { 'plant', 'harvest' } 
+tasks = { 'plant', 'harvest' } 
+
+if (#args > 0 and args[1] == '-r') then 
+  tasks = { 'harvest', 'plant' }
+end
 
 while true do
   os.run({14, 15, 16, 13}, tasks[1])
