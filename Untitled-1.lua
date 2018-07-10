@@ -42,45 +42,22 @@ function oneStep()
     rotate90right()
 end
 
-function canMove()
-    turtle.select(triggerBlockIndex)
-    return not turtle.compare()
-end
-
-function turnRightIfNeed()
-    turtle.select(trigers.right)
+function turnStep(slotIndex, left, right)
+    turtle.select(slotIndex)
     
     if (not turtle.compare()) then
         return false
     end
 
-    turtle.turnRight()
+    right()
     move()
 
-    rotate90right()
+    right()
+    right()
 
     farm()
 
-    turtle.turnLeft()
-
-    return true 
-end
-
-function turnLeftIfNeed()
-    turtle.select(trigers.left)
-    
-    if (not turtle.compare()) then
-        return false
-    end
-
-    turtle.turnLeft()
-    move()
-
-    rotate90right()
-
-    farm()
-
-    turtle.turnRight()
+    left()
 
     return true 
 end
@@ -100,8 +77,8 @@ end
 move()
 
 while true do
-    turnRightIfNeed()
-    turnLeftIfNeed()
+    turnStep(trigers.right, turtle.turnLeft, turtle.turnRight)
+    turnStep(trigers.left, turtle.turnRight, turtle.turnLeft)
 
     oneStep()
 
