@@ -14,7 +14,7 @@ function move()
 end
 
 function harvest()
-    turtle.attack() 
+    turtle.dig() 
     turtle.suck()
 end
 
@@ -29,8 +29,6 @@ function turn(slotIndex, turn)
     end
 
     turn()
-
-    harvest()
 
     step()
 
