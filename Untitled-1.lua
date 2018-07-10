@@ -1,4 +1,3 @@
-turtle = {}
 triggerBlockIndex = 16
 
 function getSlotIndexWithFood()
@@ -22,23 +21,27 @@ end
 
 function oneStep()
     rotate90right()
+    turtle.dig()
     turtle.select(getSlotIndexWithFood())
     turtle.place()
     rotate90right()
     move()
 end
 
+function canMove()
+    turtle.select(triggerBlockIndex)
+    return turtle.compare()
+end
+
 move()
 move()
 
 while true do
-    oneStep()
-
-    turtle.select(triggerBlockIndex)
-
-    if (turtle.compare()) then
+    if (canMove()) then
         return
     end
+
+    oneStep()
 end
 
 
