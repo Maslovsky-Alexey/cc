@@ -20,9 +20,9 @@ function isFinish(finishSlotIndex)
     return turtle.compareDown()
 end
 
-function finish()
-    if (movement.isFinish(trigers.finish)) then
-        movement.rotate90left()
+function finish(finishSlotIndex)
+    if (isFinish(finishSlotIndex)) then
+        rotate90left()
         return true
     end
 
