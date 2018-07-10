@@ -73,6 +73,6 @@ end
 
 local movement = {}
 
-movement.start = start;
+movement.start = start
 
 return movement
