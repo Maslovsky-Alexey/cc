@@ -1,71 +1,69 @@
 os.loadAPI('movement')
-os.loadAPI('args_reader')
 
-local args = { ... }
+function start(triggers)
+    function move()
+        turtle.forward()
+    end
 
-result, triggers = args_reader.readTriggers(args)
+    function getSlotIndexWithFood()
+        indexes = {}
 
-if (not result) then
-    return
-end
+        for i=1,4 do
+            if (turtle.getItemCount(i) > 0) then 
+                table.insert(indexes, i)
+            end
+        end
 
-function move()
-    turtle.forward()
-end
+        return indexes[math.random(#indexes)]
+    end
 
-function getSlotIndexWithFood()
-    indexes = {}
+    function plant()
+        turtle.dig()
+        turtle.select(getSlotIndexWithFood())
+        turtle.place()
+    end
 
-    for i=1,4 do
-        if (turtle.getItemCount(i) > 0) then 
-            table.insert(indexes, i)
+    function step()
+        move()
+
+        movement.rotate90right()
+
+        plant();
+
+        movement.rotate90right()
+    end
+
+    function turn(slotIndex, turn, turnBack)
+        if (not movement.compareBlock(slotIndex)) then
+            return
+        end
+
+        turn()
+        move()
+
+        turn()
+        turn()
+
+        plant()
+
+        turnBack()
+    end
+
+    move()
+
+    while true do
+        turn(triggers.right, turtle.turnRight, turtle.turnLeft)
+        turn(triggers.left, turtle.turnLeft, turtle.turnRight)
+
+        step()
+
+        if (movement.finish(triggers.finish)) then
+            return
         end
     end
 
-    return indexes[math.random(#indexes)]
 end
 
-function plant()
-    turtle.dig()
-    turtle.select(getSlotIndexWithFood())
-    turtle.place()
-end
-
-function step()
-    move()
-
-    movement.rotate90right()
-
-    plant();
-
-    movement.rotate90right()
-end
-
-function turn(slotIndex, turn, turnBack)
-    if (not movement.compareBlock(slotIndex)) then
-        return
-    end
-
-    turn()
-    move()
-
-    turn()
-    turn()
-
-    plant()
-
-    turnBack()
-end
-
-move()
-
-while true do
-    turn(triggers.right, turtle.turnRight, turtle.turnLeft)
-    turn(triggers.left, turtle.turnLeft, turtle.turnRight)
-
-    step()
-
-    if (movement.finish(triggers.finish)) then
-        return
-    end
-end
+return {
+    start = start
+}

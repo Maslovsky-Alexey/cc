@@ -1,11 +1,21 @@
+os.loadAPI('harvest')
+os.loadAPI('plant')
+
 local args = { ... }
 
+local triggers = {
+  left = 14,
+  right = 15,
+  finish = 16,
+  bone = 13
+}
+
 function plant()
-  shell.run(tasks[1], '14', '15', '16', '13')
+  harvests.start(plant)
 end
 
 function harvest()
-  shell.run(tasks[2], '14', '15', '16', '13')
+  harvests.start(triggers)
 end
 
 if (#args > 0 and args[1] == '-r') then 
