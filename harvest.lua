@@ -1,46 +1,46 @@
 os.loadAPI('movement')
 
+function move()
+    turtle.forward()
+end
+
+function addBoneIfNeed(triggers)
+    turtle.select(triggers.bone)
+
+    if (turtle.getItemCount() == 0) then
+        return
+    end
+
+    while (turtle.place()) do end
+end
+
+function harvest(triggers)
+    addBoneIfNeed(triggers)
+    turtle.dig() 
+    turtle.suck()
+end
+
+function step(triggers)
+    harvest(triggers);
+    move()
+end
+
+function turnStep(triggers, slotIndex, turn)
+    if (not movement.compareBlock(slotIndex)) then
+        return
+    end
+
+    turn()
+
+    step(triggers)
+
+    turn()
+end
+
 function start(triggers)
-    function move()
-        turtle.forward()
-    end
-
-    function addBoneIfNeed()
-        turtle.select(triggers.bone)
-
-        if (turtle.getItemCount() == 0) then
-            return
-        end
-
-        while (turtle.place()) do end
-    end
-
-    function harvest()
-        addBoneIfNeed()
-        turtle.dig() 
-        turtle.suck()
-    end
-
-    function step()
-        harvest();
-        move()
-    end
-
-    function turn(slotIndex, turn)
-        if (not movement.compareBlock(slotIndex)) then
-            return
-        end
-
-        turn()
-
-        step()
-
-        turn()
-    end
-
     while true do
-        turn(triggers.right, turtle.turnRight)
-        turn(triggers.left, turtle.turnLeft)
+        turnStep(triggers.right, turtle.turnRight)
+        turnStep(triggers.left, turtle.turnLeft)
 
         step()
 
@@ -49,3 +49,7 @@ function start(triggers)
         end
     end
 end
+
+return {
+    start = start
+}
