@@ -11,11 +11,11 @@ local triggers = {
 }
 
 function plant()
-  harvests.start(plant)
+  plant.start(triggers)
 end
 
 function harvest()
-  harvests.start(triggers)
+  harvest.start(triggers)
 end
 
 if (#args > 0 and args[1] == '-r') then 
