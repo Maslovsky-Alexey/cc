@@ -40,7 +40,7 @@ local triggers = {
   {name = 'minecraft:stone', action = turnLeft},
   {name = 'minecraft:wool', action = turnRight},
   {name = 'minecraft:dirt', action = finish},
-  {name = '', action = justTurnRight}
+  {name = 'minecraft:leaves', action = justTurnRight}
 }
 
 function move()

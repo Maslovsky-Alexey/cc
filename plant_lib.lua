@@ -8,7 +8,7 @@ function isSlotWithSeeds(index)
     if (info == nil) then
         return false
     end
-    
+
     for i,x in pairs(seedIds) do
         if (info.name == x) then 
             return true
@@ -33,7 +33,7 @@ end
 function plant()
     turtle.digDown()
     turtle.select(getSlotIndexWithSeeds())
-    turtle.place()
+    turtle.placeDown()
 end
 
 return {
