@@ -32,7 +32,7 @@ function justTurnRight()
 end
 
 function tableContainsName(table, name)
-  for j=1, #table do
+  for i=1, #table do
     if (data.name == table[i]) then
       return true
     end
@@ -49,12 +49,14 @@ function dropItems()
     turtle.select(i)
     data = turtle.getItemDetail()
 
-    if (tableContainsName(itemsToDrop, data.name)) then
-      turtle.drop(data.count)
-    end
+    if (data ~= nil) then 
+      if (tableContainsName(itemsToDrop, data.name)) then
+        turtle.drop(data.count)
+      end
 
-    if (tableContainsName(seeds, data.name)) then
-      turtle.drop(data.count / 2)
+      if (tableContainsName(seeds, data.name)) then
+        turtle.drop(data.count / 2)
+      end
     end
   end
 end
@@ -71,10 +73,10 @@ function finish()
 end
 
 local triggers = {
-  {name = 'minecraft:stone', action = turnLeft},
-  {name = 'minecraft:wool', action = turnRight},
-  {name = 'minecraft:dirt', action = finish},
-  {name = 'minecraft:leaves', action = justTurnRight}
+  {name = 'minecraft:planks', action = turnLeft},
+  {name = 'minecraft:cobblestone', action = turnRight},
+  {name = 'minecraft:stone', action = finish},
+  {name = 'minecraft:stonebrick', action = justTurnRight}
 }
 
 function move()
