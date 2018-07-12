@@ -1,6 +1,5 @@
 os.loadAPI('harvest_lib')
 os.loadAPI('plant_lib')
-os.loadAPI('grouth_helper')
 
 local growthMetadata = 7 
 
@@ -28,6 +27,10 @@ function turnRight()
   turtle.turnRight()
 end
 
+function justTurnRight()
+  turtle.turnRight()
+end
+
 function finish()
   turtle.turnRight()
   sleep(5)
@@ -37,15 +40,18 @@ local triggers = {
   {name = 'minecraft:stone', action = turnLeft},
   {name = 'minecraft:wool', action = turnRight},
   {name = 'minecraft:dirt', action = finish},
+  {name = '', action = justTurnRight}
 }
 
 function move()
   s, r = turtle.inspect()
 
-  for i = 1, #triggers do
-    if (triggers[i].name == r.name) then
-      triggers[i].action()
-      return
+  if (r ~= nil) then
+    for i = 1, #triggers do
+      if (triggers[i].name == r.name) then
+        triggers[i].action()
+        return
+      end
     end
   end
 

@@ -5,6 +5,10 @@ function isSlotWithSeeds(index)
 
     info = turtle.getItemDetail()
 
+    if (info == nil) then
+        return false
+    end
+    
     for i,x in pairs(seedIds) do
         if (info.name == x) then 
             return true

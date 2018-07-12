@@ -17,7 +17,7 @@ end
 function addBones()
     boneSlotIndex = getBoneSlotIndex()
     
-    while (boneSlotIndex != nil and turtle.placeDown()) do
+    while (boneSlotIndex ~= nil and turtle.placeDown()) do
         boneSlotIndex = getBoneSlotIndex()
     end
 end
