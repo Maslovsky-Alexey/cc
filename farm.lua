@@ -50,11 +50,11 @@ function dropItems()
     data = turtle.getItemDetail()
 
     if (tableContainsName(itemsToDrop, data.name)) then
-      turtle.drop(turtle.getItemCount())
+      turtle.drop(data.count)
     end
 
     if (tableContainsName(seeds, data.name)) then
-      turtle.drop(turtle.getItemCount() / 2)
+      turtle.drop(data.count / 2)
     end
   end
 end
