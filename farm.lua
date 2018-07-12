@@ -1,31 +1,65 @@
-os.loadAPI('harvest')
-os.loadAPI('plant')
+os.loadAPI('harvest_lib')
+os.loadAPI('plant_lib')
+os.loadAPI('grouth_helper')
 
-local args = { ... }
+local growthMetadata = 7 
+
+function isGrown()
+    success, result = turtle.inspectDown()
+
+    return result.metadata == growthMetadata
+end
+
+function isPlant()
+  success, result = turtle.inspectDown()
+
+  return result.metadata ~= nil
+end
+
+function turnLeft()
+  turtle.turnLeft()
+  turtle.forward()
+  turtle.turnLeft()
+end
+
+function turnRight()
+  turtle.turnRight()
+  turtle.forward()
+  turtle.turnRight()
+end
+
+function finish()
+  turtle.turnRight()
+  sleep(5)
+end
 
 local triggers = {
-  left = 14,
-  right = 15,
-  finish = 16,
-  bone = 13
+  {name = 'minecraft:stone', action = turnLeft},
+  {name = 'minecraft:wool', action = turnRight},
+  {name = 'minecraft:dirt', action = finish},
 }
 
-function plant()
-  plant.start(triggers)
-end
+function move()
+  s, r = turtle.inspect()
 
-function harvest()
-  harvest.start(triggers)
-end
+  for i = 1, #triggers do
+    if (triggers[i].name == r.name) then
+      triggers[i].action()
+      return
+    end
+  end
 
-if (#args > 0 and args[1] == '-r') then 
-  harvest()
+  turtle.forward()
 end
 
 while true do
-  plant()
+  move()
 
-  sleep(60 * 10)
+  if (isGrown()) then
+    harvest_lib.harvest()
+  end
 
-  harvest()
+  if (not isPlant()) then
+    plant_lib.plant()
+  end
 end
