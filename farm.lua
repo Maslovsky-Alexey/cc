@@ -31,8 +31,42 @@ function justTurnRight()
   turtle.turnRight()
 end
 
+function tableContainsName(table, name)
+  for j=1, #table do
+    if (data.name == table[i]) then
+      return true
+    end
+  end
+
+  return false
+end
+
+function dropItems()
+  itemsToDrop = { 'minecraft:wheat' }
+  seeds = { 'minecraft:carrot', 'minecraft:potato' }
+
+  for i=1,16 do
+    turtle.select(i)
+    data = turtle.getItemDetail()
+
+    if (tableContainsName(itemsToDrop, data.name)) then
+      turtle.drop(turtle.getItemCount())
+    end
+
+    if (tableContainsName(seeds, data.name)) then
+      turtle.drop(turtle.getItemCount() / 2)
+    end
+  end
+end
+
 function finish()
+  turtle.turnLeft()
+  
+  dropItems()
+
   turtle.turnRight()
+  turtle.turnRight()
+
   sleep(5)
 end
 

@@ -1,4 +1,4 @@
-seedIds = { 'minecraft:carrot', 'minecraft:patato', 'minecraft:wheat_seeds' }
+seedIds = { 'minecraft:carrot', 'minecraft:potato', 'minecraft:wheat_seeds' }
 
 function isSlotWithSeeds(index)
     turtle.select(index)
